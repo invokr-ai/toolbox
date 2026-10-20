@@ -14,7 +14,7 @@ mutable state. Dependencies are restricted to three hash-locked document parsers
 
 Approval: offline tools `ask`; network reads `ask_once` (Auto mode prompts until a
 standing grant covers the call); side-effecting tools `always_ask` (http_api,
-spotify_playback, spotify_queue, ha_call_service, discord). `ask_once`/`always_ask`
+spotify_playback, spotify_queue, ha_call_service, discord, github_pr). `ask_once`/`always_ask`
 need an invokr with those policies; older invokr treats them as `ask`. All tools:
 `code_execution` tier, one-shot execution, no workspace
 reads/writes and no persistent scratch. Limits: 128 MiB declared memory, 64 KiB
@@ -32,6 +32,7 @@ defaults for optional fields, unknown arguments rejected.
 | [datetime](tools/datetime/README.md) | Shift an offset-aware ISO timestamp and convert its UTC offset. | off | 3 s |
 | [discord](tools/discord/README.md) | Read Discord channel messages or send a text message. | discord.com | 15 s |
 | [discord_admin](tools/discord_admin/README.md) | List Discord guild channels or roles without changing them. | discord.com | 15 s |
+| [github_pr](tools/github_pr/README.md) | Open a GitHub pull request from an already-pushed branch. | api.github.com | 15 s |
 | [docx_extract](tools/docx_extract/README.md) | Extract plain paragraphs from base64 DOCX without external relationships. | off | 3 s |
 | [ha_call_service](tools/ha_call_service/README.md) | Call one Home Assistant service with explicit JSON data. | homeassistant.example.invalid | 15 s |
 | [ha_get_state](tools/ha_get_state/README.md) | Read the current Home Assistant state of one entity. | homeassistant.example.invalid | 15 s |

@@ -1,0 +1,72 @@
+{
+  "name": "github_pr",
+  "description": "Open a GitHub pull request from an already-pushed branch.",
+  "namespace": "hammer",
+  "example": "{\"name\": \"github_pr\", \"arguments\": {\"repo\": \"octo/demo\", \"head\": \"feature\", \"base\": \"main\", \"title\": \"Add feature\"}}",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "repo": {
+        "type": "string",
+        "description": "Repository as owner/name.",
+        "maxLength": 141
+      },
+      "head": {
+        "type": "string",
+        "description": "Pushed branch with the changes; owner:branch for a fork.",
+        "maxLength": 295
+      },
+      "base": {
+        "type": "string",
+        "description": "Branch to merge into.",
+        "maxLength": 255,
+        "default": "main"
+      },
+      "title": {
+        "type": "string",
+        "description": "Pull request title.",
+        "maxLength": 256
+      },
+      "body": {
+        "type": "string",
+        "description": "Pull request description in Markdown; empty for none.",
+        "maxLength": 20000,
+        "default": ""
+      },
+      "draft": {
+        "type": "boolean",
+        "description": "Open as a draft.",
+        "default": false
+      }
+    },
+    "required": [
+      "repo",
+      "head",
+      "title"
+    ],
+    "additionalProperties": false
+  },
+  "policy": {
+    "tiers": [
+      "code_execution"
+    ],
+    "approval": "always_ask"
+  },
+  "capabilities": {
+    "reads_workspace": false,
+    "writes_workspace": false,
+    "network": true,
+    "executes_code": true
+  },
+  "daemon": false,
+  "limits": {
+    "timeout_seconds": 15,
+    "memory_mb": 128,
+    "output_kb": 32
+  },
+  "network": {
+    "allow_hosts": [
+      "api.github.com"
+    ]
+  }
+}
